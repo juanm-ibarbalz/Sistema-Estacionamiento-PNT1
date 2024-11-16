@@ -1,0 +1,38 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\juanm\\source\\repos\\SistemaEstacionamiento\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A18DB604-13FF-4FE0-938B-8E8C7BCA6E77}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\juanm\\source\\repos\\sistemaestacionamiento\\sistemaestacionamiento\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A18DB604-13FF-4FE0-938B-8E8C7BCA6E77}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\juanm\\source\\repos\\SistemaEstacionamiento\\SistemaEstacionamiento\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "SistemaEstacionamiento\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\juanm\\source\\repos\\SistemaEstacionamiento\\SistemaEstacionamiento\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "SistemaEstacionamiento\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-14T22:47:39.154Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

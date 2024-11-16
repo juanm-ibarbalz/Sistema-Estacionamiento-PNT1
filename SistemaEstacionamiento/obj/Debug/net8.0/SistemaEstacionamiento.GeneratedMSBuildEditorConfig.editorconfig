@@ -1,0 +1,79 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = SistemaEstacionamiento
+build_property.RootNamespace = SistemaEstacionamiento
+build_property.ProjectDir = C:\Users\juanm\source\repos\SistemaEstacionamiento\SistemaEstacionamiento\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\juanm\source\repos\SistemaEstacionamiento\SistemaEstacionamiento
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/juanm/source/repos/SistemaEstacionamiento/SistemaEstacionamiento/Views/AgregarEmpleado/AgregarEmpleado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdyZWdhckVtcGxlYWRvXEFncmVnYXJFbXBsZWFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/juanm/source/repos/SistemaEstacionamiento/SistemaEstacionamiento/Views/Configuracion/Configuracion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmlndXJhY2lvblxDb25maWd1cmFjaW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/juanm/source/repos/SistemaEstacionamiento/SistemaEstacionamiento/Views/GananciasEstimadas/GananciasEstimadas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FuYW5jaWFzRXN0aW1hZGFzXEdhbmFuY2lhc0VzdGltYWRhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/juanm/source/repos/SistemaEstacionamiento/SistemaEstacionamiento/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/juanm/source/repos/SistemaEstacionamiento/SistemaEstacionamiento/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/juanm/source/repos/SistemaEstacionamiento/SistemaEstacionamiento/Views/QuitarEmpleado/QuitarEmpleado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVpdGFyRW1wbGVhZG9cUXVpdGFyRW1wbGVhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/juanm/source/repos/SistemaEstacionamiento/SistemaEstacionamiento/Views/RegistrarVehiculo/RegistrarVehiculo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cmFyVmVoaWN1bG9cUmVnaXN0cmFyVmVoaWN1bG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/juanm/source/repos/SistemaEstacionamiento/SistemaEstacionamiento/Views/RetirarVehiculo/RetirarVehiculo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV0aXJhclZlaGljdWxvXFJldGlyYXJWZWhpY3Vsby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/juanm/source/repos/SistemaEstacionamiento/SistemaEstacionamiento/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/juanm/source/repos/SistemaEstacionamiento/SistemaEstacionamiento/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/juanm/source/repos/SistemaEstacionamiento/SistemaEstacionamiento/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/juanm/source/repos/SistemaEstacionamiento/SistemaEstacionamiento/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/juanm/source/repos/SistemaEstacionamiento/SistemaEstacionamiento/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-8nb769y6ha

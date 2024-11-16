@@ -1,0 +1,31 @@
+﻿@model SistemaEstacionamiento.ViewModels.RetirarVehiculoViewModel
+
+@{
+    ViewData["Title"] = "Retirar Vehículo";
+}
+
+<h1 class="title">@ViewData["Title"]</h1>
+
+<form asp-action="RetirarVehiculo">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="CodigoTicket" class="control-label"></label>
+        <input asp-for="CodigoTicket" class="form-control" />
+        <span asp-validation-for="CodigoTicket" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Dni" class="control-label"></label>
+        <input asp-for="Dni" class="form-control" />
+        <span asp-validation-for="Dni" class="text-danger"></span>
+    </div>
+    <div style="text-align: center;">
+        <input type="submit" value="Generar Ticket" class="btn btn-custom" />
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Regresar</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

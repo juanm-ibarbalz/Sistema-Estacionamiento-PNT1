@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Sistema de Estacionamiento</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a asp-controller="Home" asp-action="Index" class="navbar-brand"><strong>Estacionamiento Belgrano</strong></a>
+            <div class="espacios-disponibles ml-auto">
+                Espacios disponibles: Autos ‎ <span id="espacios-autos">-</span> ‎ | Motos ‎ <span id="espacios-motos">-</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="overlay"></div>
+
+    <div class="container main-container">
+        @RenderBody()
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Estacionamiento Belgrano. Todos los derechos reservados. <a class="privacy-link" asp-controller="Home" asp-action="Privacy">Privacidad</a></p>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '@Url.Action("GetLugaresDisponibles", "ContadorDeLugares")',
+                method: 'GET',
+                success: function (data) {
+                    if (data.error) {
+                        $('#espacios-disponibles').text(data.error);
+                    } else {
+                        $('#espacios-autos').text(data.espaciosDisponiblesAutos);
+                        $('#espacios-motos').text(data.espaciosDisponiblesMotos);
+                    }
+                },
+                error: function () {
+                    $('#espacios-disponibles').text('Error al obtener los espacios disponibles.');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

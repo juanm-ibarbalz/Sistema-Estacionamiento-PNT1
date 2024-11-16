@@ -1,0 +1,214 @@
+/* Estilo para los botones personalizados */
+.btn-custom {
+    background-color: #d32f2f;
+    color: white;
+    font-size: 18px;
+    padding: 10px 30px;
+    margin: 5px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.btn-custom:hover {
+    background-color: #c12727;
+}
+
+/* Añadir foco al botón */
+.btn:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* Ajustes para formularios */
+input,
+select,
+textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Ajuste para el cuerpo */
+body {
+    background: url('https://cdn.pixabay.com/photo/2022/07/28/06/25/road-7349232_1280.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between; /* Asegura que el contenido principal y el footer estén separados */
+}
+
+/* Estilo para la barra de navegación */
+.navbar {
+    background-color: #d32f2f;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #e9ecef;
+    z-index: 3;
+}
+
+.navbar .navbar-brand {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    padding: 0 20px;
+}
+
+.navbar .navbar-brand:before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: url('https://cdn.pixabay.com/photo/2023/03/21/14/29/parking-sign-7767849_1280.png') no-repeat center center;
+    background-size: cover;
+    background: white;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.navbar .navbar-brand:hover {
+    color: lightgray;
+}
+
+/* Estilo para el contenedor principal */
+.container, .main-container {
+    background: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    max-width: 800px;
+    padding: 20px;
+    box-sizing: border-box;
+    flex: 0 0 auto; /* Evita que el contenedor se expanda */
+    position: relative;
+    z-index: 2;
+    margin: 5vh auto 30px;
+    min-height: 50vh; /* Altura mínima ajustada */
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    overflow: hidden;
+    justify-content: center; /* Asegura que el contenido esté centrado */
+}
+
+/* Estilo para la capa de superposición */
+.overlay {
+    position: fixed; /* Cambiado a fixed para cubrir toda la pantalla */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+    opacity: 0.7;
+    min-height: 100vh;
+}
+
+/* Estilo para el pie de página */
+.footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    z-index: 3;
+    width: 100%;
+    position: relative;
+}
+
+.footer a {
+    color: #258cfb;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Ajustes generales */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+.home-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.home-buttons h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.home-buttons label {
+    margin-right: 10px;
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-weight: bold;
+}
+
+.espacios-disponibles {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.checkbox-container label {
+    font-weight: normal;
+    margin: 0;
+}
+
+.form-group label {
+    font-size: 18px;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+}
+
+.form-check label {
+    margin-left: 10px;
+}

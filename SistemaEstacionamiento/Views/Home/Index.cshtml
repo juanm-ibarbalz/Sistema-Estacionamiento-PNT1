@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="home-buttons">
+    <h2 class="title">Bienvenido, seleccione una opción:</h2>
+    <div class="button-group">
+        <a class="btn btn-custom" asp-controller="RegistrarVehiculo" asp-action="RegistrarVehiculo">Registrar Vehículo</a>
+        <a class="btn btn-custom" asp-controller="RetirarVehiculo" asp-action="RetirarVehiculo">Retirar Vehículo</a>
+    </div>
+
+    <div class="button-group">
+        <a class="btn btn-custom" asp-controller="GananciasEstimadas" asp-action="GananciasEstimadas">Estimar Ganancias</a>
+        <a class="btn btn-custom" asp-controller="Configuracion" asp-action="Configuracion">Configuración</a>
+    </div>
+
+    <div class="button-group">
+        <label style="font-size: 20px"><strong>Empleados:</strong></label>
+        <a class="btn btn-custom" asp-controller="AgregarEmpleado" asp-action="AgregarEmpleado">Agregar</a>
+        <a class="btn btn-custom" asp-controller="QuitarEmpleado" asp-action="QuitarEmpleado">Quitar</a>
+    </div>
+</div>

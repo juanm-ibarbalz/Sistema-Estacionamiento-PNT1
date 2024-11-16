@@ -1,0 +1,33 @@
+﻿@model SistemaEstacionamiento.Models.Empleado
+
+@{
+    ViewData["Title"] = "Quitar Empleado";
+}
+
+<h1 class="title">@ViewData["Title"]</h1>
+
+<h4 class="title">Empleado</h4>
+<hr />
+<div class="row">
+    <form asp-action="QuitarEmpleado">
+        <div class="form-group">
+            <label asp-for="Cuil" class="control-label"></label>
+            <input asp-for="Cuil" class="form-control" />
+            <span asp-validation-for="Cuil" class="text-danger"></span>
+        </div>
+        <br/>
+        <div class="form-group">
+            <input type="submit" value="Quitar Empleado" class="btn btn-custom" />
+        </div>
+        <br />
+        <div style="text-align: center;">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Regresar</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

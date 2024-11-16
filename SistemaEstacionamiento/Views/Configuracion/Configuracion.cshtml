@@ -1,0 +1,56 @@
+﻿@model ConfiguracionViewModel
+@{
+    ViewData["Title"] = "Configuracion";
+}
+<h1 class="title">@ViewData["Title"]</h1>
+<hr />
+<h2 class="title">Configuración de Precio por Hora</h2>
+
+<form asp-action="PrecioPorHora" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label for="nuevoPrecio">Nuevo precio por hora:</label>
+        <input asp-for="PrecioActual" type="number" step="0.01" class="form-control" id="nuevoPrecio" required>
+        <span asp-validation-for="PrecioActual" class="text-danger"></span>
+    </div>
+    <div style="text-align: center;">
+        <button type="submit" class="btn btn-custom">Guardar</button>
+    </div>
+</form>
+
+<br />
+<hr />
+
+<h2 class="title">Configuración de Dimensiones del Estacionamiento</h2>
+
+<form asp-action="Dimensiones" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label for="pisos">Cantidad de Pisos:</label>
+        <input asp-for="Dimensiones.Pisos" type="number" class="form-control" id="pisos" required>
+        <span asp-validation-for="Dimensiones.Pisos" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="espaciosAuto">Espacios de Autos por Piso:</label>
+        <input asp-for="Dimensiones.EspaciosAuto" type="number" class="form-control" id="espaciosAuto" required>
+        <span asp-validation-for="Dimensiones.EspaciosAuto" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="espaciosMoto">Espacios de Motos por Piso:</label>
+        <input asp-for="Dimensiones.EspaciosMoto" type="number" class="form-control" id="espaciosMoto" required>
+        <span asp-validation-for="Dimensiones.EspaciosMoto" class="text-danger"></span>
+    </div>
+    <div style="text-align: center;">
+        <button type="submit" class="btn btn-custom">Guardar</button>
+    </div>
+    <br />
+    <div style="text-align: center;">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Regresar</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

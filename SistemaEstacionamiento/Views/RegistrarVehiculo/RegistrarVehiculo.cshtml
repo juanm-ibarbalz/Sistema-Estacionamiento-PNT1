@@ -1,0 +1,93 @@
+﻿@model SistemaEstacionamiento.Models.RegistrarVehiculoViewModel
+
+@{
+    ViewData["Title"] = "Registrar Vehiculo";
+}
+
+<h1 class="title">@ViewData["Title"]</h1>
+<h4 class="title">Datos del Vehículo</h4>
+<hr />
+<div class="row">
+    <form asp-action="RegistrarVehiculo">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Matricula" class="control-label"></label>
+            <input asp-for="Matricula" class="form-control text-uppercase" />
+            <span asp-validation-for="Matricula" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Tipo" class="control-label"></label>
+            <select asp-for="Tipo" class="form-control">
+                <option value="">Seleccione un tipo</option>
+                <option value="Auto">Auto</option>
+                <option value="Moto">Moto</option>
+            </select>
+            <span asp-validation-for="Tipo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Color" class="control-label"></label>
+            <input asp-for="Color" class="form-control text-uppercase" />
+            <span asp-validation-for="Color" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="manualLugarCheckbox">
+                <label class="form-check-label" for="manualEntry">Ingresar lugar manualmente</label>
+            </div>
+        </div>
+
+        <div id="manualLugarInputs" style="display: none;">
+            <div class="form-group">
+                <label asp-for="Piso" class="control-label"></label>
+                <input asp-for="Piso" class="form-control" type="number" min="1" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Lugar" class="control-label"></label>
+                <input asp-for="Lugar" class="form-control" type="number" min="1" />
+            </div>
+        </div>
+
+        <h4 class="title">Datos del Cliente</h4>
+        <div class="form-group">
+            <label asp-for="Dni" class="control-label"></label>
+            <input asp-for="Dni" class="form-control" />
+            <span asp-validation-for="Dni" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Nombre" class="control-label"></label>
+            <input asp-for="Nombre" class="form-control text-uppercase" />
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Apellido" class="control-label"></label>
+            <input asp-for="Apellido" class="form-control text-uppercase" />
+            <span asp-validation-for="Apellido" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Generar Ticket" class="btn btn-custom" />
+        </div>
+
+        <div style="text-align: center;">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Regresar</a>
+        </div>
+
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.querySelector('#manualLugarCheckbox').addEventListener('change', function () {
+            document.querySelector('#manualLugarInputs').style.display = this.checked ? 'block' : 'none';
+        });
+        document.querySelectorAll('.text-uppercase').forEach(input => {
+            input.addEventListener('input', function () {
+                this.value = this.value.toUpperCase();
+            });
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
