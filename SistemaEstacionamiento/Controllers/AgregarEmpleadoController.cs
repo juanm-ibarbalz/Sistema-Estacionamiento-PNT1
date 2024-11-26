@@ -22,7 +22,7 @@ namespace SistemaEstacionamiento.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AgregarEmpleado([Bind("Cuil,Nombre,Apellido,Sueldo")] Empleado empleado)
+        public async Task<IActionResult> AgregarEmpleado(Empleado empleado)
         {
             if (ModelState.IsValid)
             {

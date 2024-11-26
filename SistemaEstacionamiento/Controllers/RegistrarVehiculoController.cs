@@ -31,7 +31,7 @@ namespace SistemaEstacionamiento.Controllers
             var dimensiones = await ObtenerUltimasDimensionesAsync();
             if (dimensiones == null)
             {
-                ModelState.AddModelError("", "Error al obtener las dimensiones del estacionamiento.");
+                ModelState.AddModelError(string.Empty, "Error al obtener las dimensiones del estacionamiento.");
                 return View(model);
             }
 
@@ -39,13 +39,13 @@ namespace SistemaEstacionamiento.Controllers
             {
                 if (!ValidarRangoLugar(model.Piso.Value, model.Lugar.Value, model.Tipo, dimensiones))
                 {
-                    ModelState.AddModelError("", "El lugar ingresado está fuera de rango.");
+                    ModelState.AddModelError(string.Empty, "El lugar ingresado está fuera de rango.");
                     return View(model);
                 }
 
                 if (!await VerificarDisponibilidadLugarAsync(model.Piso.Value, model.Lugar.Value))
                 {
-                    ModelState.AddModelError("", "El lugar ingresado no está disponible.");
+                    ModelState.AddModelError(string.Empty, "El lugar ingresado no está disponible.");
                     return View(model);
                 }
             }
@@ -54,7 +54,7 @@ namespace SistemaEstacionamiento.Controllers
                 var lugarAsignado = await ObtenerProximoLugarDisponibleAsync(model.Tipo, dimensiones);
                 if (lugarAsignado == null)
                 {
-                    ModelState.AddModelError("", "No hay lugares disponibles.");
+                    ModelState.AddModelError(string.Empty, "No hay lugares disponibles.");
                     return View(model);
                 }
 
@@ -64,7 +64,7 @@ namespace SistemaEstacionamiento.Controllers
 
             if (await VehiculoYaRegistradoAsync(model.Matricula))
             {
-                ModelState.AddModelError("", "El vehículo ya está registrado.");
+                ModelState.AddModelError(string.Empty, "El vehículo ya está registrado.");
                 return View(model);
             }
 

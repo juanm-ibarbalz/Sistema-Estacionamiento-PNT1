@@ -14,22 +14,20 @@ namespace SistemaEstacionamiento.Controllers
             _context = context;
         }
 
-        // GET: Empleado/Create
         [HttpGet]
         public IActionResult QuitarEmpleado()
         {
             return View();
         }
 
-        // POST: Empleado/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> QuitarEmpleado(decimal cuil)
         {
-            var empleado = await _context.Empleados
-                .FirstOrDefaultAsync(m => m.Cuil == cuil);
+            var empleado = await _context.Empleados.FindAsync(cuil);
             if (empleado == null)
             {
+                ModelState.AddModelError(string.Empty, "El empleado no existe.");
                 return View();
             }
 

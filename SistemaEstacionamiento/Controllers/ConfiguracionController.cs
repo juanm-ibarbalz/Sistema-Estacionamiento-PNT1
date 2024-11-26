@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SistemaEstacionamiento.Models;
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 public class ConfiguracionController : Controller
@@ -17,10 +18,19 @@ public class ConfiguracionController : Controller
     [HttpGet]
     public async Task<IActionResult> Configuracion()
     {
+        var precioActual = await _context.Tarifas
+            .OrderByDescending(t => t.FechaActualizacion)
+            .Select(t => t.Hora)
+            .FirstOrDefaultAsync();
+
+        var ultimaDimension = await _context.Dimensiones
+            .OrderByDescending(d => d.FechaActualizacion)
+            .FirstOrDefaultAsync();
+
         var model = new ConfiguracionViewModel
         {
-            PrecioActual = await ObtenerPrecioActualAsync(),
-            Dimensiones = await _context.Dimensiones.OrderByDescending(d => d.FechaActualizacion).FirstOrDefaultAsync() ?? new Dimension()
+            PrecioActual = precioActual,
+            Dimensiones = ultimaDimension ?? new Dimension()
         };
 
         return View(model);
@@ -31,15 +41,10 @@ public class ConfiguracionController : Controller
     {
         if (!ModelState.IsValid)
         {
-            foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-            {
-                ModelState.AddModelError("", error.ErrorMessage);
-            }
             return View("Configuracion", model);
         }
 
-        decimal ultimoCodigoTarifa = _context.Tarifas.OrderByDescending(t => t.CodigoTarifa).Select(t => t.CodigoTarifa).FirstOrDefault();
-        decimal nuevoCodigoTarifa = ultimoCodigoTarifa + 1;
+        var nuevoCodigoTarifa = await ObtenerSiguienteCodigoAsync<Tarifa>(t => t.CodigoTarifa);
 
         var tarifa = new Tarifa
         {
@@ -47,11 +52,13 @@ public class ConfiguracionController : Controller
             Hora = model.PrecioActual,
             FechaActualizacion = DateTime.Now
         };
+
         _context.Tarifas.Add(tarifa);
         await _context.SaveChangesAsync();
 
         return RedirectToAction(nameof(Configuracion));
     }
+
 
     [HttpPost]
     public async Task<IActionResult> Dimensiones(ConfiguracionViewModel model)
@@ -61,21 +68,36 @@ public class ConfiguracionController : Controller
             return View("Configuracion", model);
         }
 
-        decimal ultimoCodigoDimension = _context.Dimensiones.OrderByDescending(d => d.CodigoDimension).Select(d => d.CodigoDimension).FirstOrDefault();
-        decimal nuevoCodigoDimension = ultimoCodigoDimension + 1;
+        var nuevoCodigoDimension = await ObtenerSiguienteCodigoAsync<Dimension>(d => d.CodigoDimension);
 
-        model.Dimensiones.CodigoDimension = nuevoCodigoDimension;
-        model.Dimensiones.FechaActualizacion = DateTime.Now;
+        var dimension = new Dimension
+        {
+            CodigoDimension = nuevoCodigoDimension,
+            Pisos = model.Dimensiones.Pisos,
+            EspaciosAuto = model.Dimensiones.EspaciosAuto,
+            EspaciosMoto = model.Dimensiones.EspaciosMoto,
+            FechaActualizacion = DateTime.Now
+        };
 
-        _context.Dimensiones.Add(model.Dimensiones);
+        _context.Dimensiones.Add(dimension);
         await _context.SaveChangesAsync();
 
         return RedirectToAction(nameof(Configuracion));
     }
 
-    private async Task<decimal> ObtenerPrecioActualAsync()
+
+    private async Task<decimal> ObtenerSiguienteCodigoAsync<T>(Expression<Func<T, decimal>> codigo) where T : class
     {
-        var ultimaTarifa = await _context.Tarifas.OrderByDescending(t => t.FechaActualizacion).FirstOrDefaultAsync();
-        return ultimaTarifa != null ? ultimaTarifa.Hora : 0;
+        var ultimoCodigo = await _context.Set<T>()
+            .OrderByDescending(codigo)
+            .Select(codigo)
+            .FirstOrDefaultAsync();
+
+        return ultimoCodigo + 1;
     }
+
+
+
 }
+
+

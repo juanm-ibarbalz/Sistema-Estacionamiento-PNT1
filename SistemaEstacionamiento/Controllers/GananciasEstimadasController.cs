@@ -15,11 +15,9 @@ namespace SistemaEstacionamiento.Controllers
 
         public IActionResult GananciasEstimadas()
         {
-            #pragma warning disable CS8629 // Nullable value type may be null.
             var gananciasRegistradas = _context.Registros
                 .Where(r => r.Importe.HasValue)
                 .Sum(r => r.Importe.Value );
-            #pragma warning restore CS8629 // Nullable value type may be null.
 
             var vehiculosEstacionados = _context.Vehiculos.ToList();
 

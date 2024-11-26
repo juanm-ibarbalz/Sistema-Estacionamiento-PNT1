@@ -250,3 +250,4 @@ C:\Users\juanm\source\repos\SistemaEstacionamiento\SistemaEstacionamiento\obj\De
 C:\Users\juanm\source\repos\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\net8.0\SistemaEstacionamiento.pdb
 C:\Users\juanm\source\repos\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\net8.0\SistemaEstacionamiento.genruntimeconfig.cache
 C:\Users\juanm\source\repos\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\net8.0\ref\SistemaEstacionamiento.dll
+C:\Users\juanm\source\repos\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\net8.0\SistemaEstacionamiento.sourcelink.json
