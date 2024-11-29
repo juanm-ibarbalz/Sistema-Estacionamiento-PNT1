@@ -15,25 +15,13 @@ namespace SistemaEstacionamiento.Controllers
 
         public IActionResult GananciasEstimadas()
         {
+            #pragma warning disable CS8629 // Nullable value type may be null.
             var gananciasRegistradas = _context.Registros
                 .Where(r => r.Importe.HasValue)
-                .Sum(r => r.Importe.Value );
+                .Sum(r => r.Importe.Value);
+            #pragma warning restore CS8629 // Nullable value type may be null.
 
-            var vehiculosEstacionados = _context.Vehiculos.ToList();
-
-            var tarifas = _context.Tarifas.ToDictionary(t => t.CodigoTarifa, t => t.Hora);
-            decimal estimacionGanancias = 0;
-
-            decimal tarifa = tarifas.Any() ? tarifas.First().Value : 0;
-
-            if (tarifa != 0)
-            {
-                foreach (var vehiculo in vehiculosEstacionados)
-                {
-                    estimacionGanancias += tarifa;
-                }
-            }
-
+            var estimacionGanancias = CalcularGananciasEstimadas();
             var sueldosTotales = _context.Empleados.Sum(e => e.Sueldo);
             var gananciasTotales = (gananciasRegistradas + estimacionGanancias) - sueldosTotales;
 
@@ -46,6 +34,16 @@ namespace SistemaEstacionamiento.Controllers
             };
 
             return View(viewModel);
+        }
+
+        private decimal CalcularGananciasEstimadas()
+        {
+            var tarifa = _context.Tarifas.FirstOrDefault()?.Hora ?? 0;
+            if (tarifa == 0)
+                return 0;
+
+            var vehiculosEstacionados = _context.Vehiculos.Count();
+            return vehiculosEstacionados * tarifa;
         }
     }
 }

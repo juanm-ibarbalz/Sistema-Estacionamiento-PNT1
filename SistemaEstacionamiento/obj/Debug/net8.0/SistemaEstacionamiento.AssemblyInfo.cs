@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SistemaEstacionamiento")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+445c583a02489bde3eaa540dd8df9b9b02b88483")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d66a4276492b56968a849a2e08941454fc3dfd4c")]
 [assembly: System.Reflection.AssemblyProductAttribute("SistemaEstacionamiento")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SistemaEstacionamiento")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
