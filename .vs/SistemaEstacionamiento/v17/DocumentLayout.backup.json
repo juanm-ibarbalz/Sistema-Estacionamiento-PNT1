@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\juanm\\source\\repos\\SistemaEstacionamiento\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A18DB604-13FF-4FE0-938B-8E8C7BCA6E77}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\juanm\\source\\repos\\sistemaestacionamiento\\sistemaestacionamiento\\models\\registrarvehiculoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A18DB604-13FF-4FE0-938B-8E8C7BCA6E77}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\models\\registrarvehiculoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A18DB604-13FF-4FE0-938B-8E8C7BCA6E77}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\juanm\\source\\repos\\sistemaestacionamiento\\sistemaestacionamiento\\controllers\\registrarvehiculocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A18DB604-13FF-4FE0-938B-8E8C7BCA6E77}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\controllers\\registrarvehiculocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A18DB604-13FF-4FE0-938B-8E8C7BCA6E77}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\juanm\\source\\repos\\sistemaestacionamiento\\sistemaestacionamiento\\views\\registrarvehiculo\\registrarvehiculo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A18DB604-13FF-4FE0-938B-8E8C7BCA6E77}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\views\\registrarvehiculo\\registrarvehiculo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A18DB604-13FF-4FE0-938B-8E8C7BCA6E77}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\juanm\\source\\repos\\sistemaestacionamiento\\sistemaestacionamiento\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A18DB604-13FF-4FE0-938B-8E8C7BCA6E77}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
@@ -14,25 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\juanm\\source\\repos\\SistemaEstacionamiento\\SistemaEstacionamiento\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "SistemaEstacionamiento\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\juanm\\source\\repos\\SistemaEstacionamiento\\SistemaEstacionamiento\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "SistemaEstacionamiento\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAwwCEAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-11-14T22:47:39.154Z",
-              "IsPinned": true,
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RegistrarVehiculoController.cs",
+              "DocumentMoniker": "C:\\Users\\juanm\\source\\repos\\SistemaEstacionamiento\\SistemaEstacionamiento\\Controllers\\RegistrarVehiculoController.cs",
+              "RelativeDocumentMoniker": "SistemaEstacionamiento\\Controllers\\RegistrarVehiculoController.cs",
+              "ToolTip": "C:\\Users\\juanm\\source\\repos\\SistemaEstacionamiento\\SistemaEstacionamiento\\Controllers\\RegistrarVehiculoController.cs",
+              "RelativeToolTip": "SistemaEstacionamiento\\Controllers\\RegistrarVehiculoController.cs",
+              "ViewState": "AgIAAJsAAAAAAAAAAAAiwKwAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T01:23:29.152Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RegistrarVehiculo.cshtml",
+              "DocumentMoniker": "C:\\Users\\juanm\\source\\repos\\SistemaEstacionamiento\\SistemaEstacionamiento\\Views\\RegistrarVehiculo\\RegistrarVehiculo.cshtml",
+              "RelativeDocumentMoniker": "SistemaEstacionamiento\\Views\\RegistrarVehiculo\\RegistrarVehiculo.cshtml",
+              "ToolTip": "C:\\Users\\juanm\\source\\repos\\SistemaEstacionamiento\\SistemaEstacionamiento\\Views\\RegistrarVehiculo\\RegistrarVehiculo.cshtml",
+              "RelativeToolTip": "SistemaEstacionamiento\\Views\\RegistrarVehiculo\\RegistrarVehiculo.cshtml",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAuwEcAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-29T01:16:21.377Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RegistrarVehiculoViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\juanm\\source\\repos\\SistemaEstacionamiento\\SistemaEstacionamiento\\Models\\RegistrarVehiculoViewModel.cs",
+              "RelativeDocumentMoniker": "SistemaEstacionamiento\\Models\\RegistrarVehiculoViewModel.cs",
+              "ToolTip": "C:\\Users\\juanm\\source\\repos\\SistemaEstacionamiento\\SistemaEstacionamiento\\Models\\RegistrarVehiculoViewModel.cs",
+              "RelativeToolTip": "SistemaEstacionamiento\\Models\\RegistrarVehiculoViewModel.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T01:08:32.809Z",
+              "EditorCaption": ""
             }
           ]
         }

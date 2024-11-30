@@ -11,10 +11,12 @@ namespace SistemaEstacionamiento.Models
 
         [Required(ErrorMessage = "El nombre es obligatorio.")]
         [StringLength(20, ErrorMessage = "El nombre no puede tener más de 20 caracteres.")]
+        [RegularExpression("^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$", ErrorMessage = "El nombre solo puede contener letras.")]
         public string Nombre { get; set; } = null!;
 
         [Required(ErrorMessage = "El apellido es obligatorio.")]
         [StringLength(20, ErrorMessage = "El apellido no puede tener más de 20 caracteres.")]
+        [RegularExpression("^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$", ErrorMessage = "El apellido solo puede contener letras.")]
         public string Apellido { get; set; } = null!;
 
         [Required(ErrorMessage = "El sueldo es obligatorio.")]

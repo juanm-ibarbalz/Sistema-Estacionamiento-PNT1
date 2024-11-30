@@ -41,12 +41,15 @@
             <div class="form-group">
                 <label asp-for="Piso" class="control-label"></label>
                 <input asp-for="Piso" class="form-control" type="number" min="1" />
+                <span asp-validation-for="Piso" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Lugar" class="control-label"></label>
                 <input asp-for="Lugar" class="form-control" type="number" min="1" />
+                <span asp-validation-for="Lugar" class="text-danger"></span>
             </div>
         </div>
+
 
         <h4 class="title">Datos del Cliente</h4>
         <div class="form-group">
@@ -78,9 +81,38 @@
 
 @section Scripts {
     <script>
+        // Mstrar u ocultar los campos manuales de Piso y Lugar
         document.querySelector('#manualLugarCheckbox').addEventListener('change', function () {
-            document.querySelector('#manualLugarInputs').style.display = this.checked ? 'block' : 'none';
+            const manualLugarInputs = document.querySelector('#manualLugarInputs');
+            const pisoInput = document.querySelector('input[name="Piso"]');
+            const lugarInput = document.querySelector('input[name="Lugar"]');
+
+            if (this.checked) {
+                manualLugarInputs.style.display = 'block';
+            } else {
+                manualLugarInputs.style.display = 'none';
+
+                // Vaciar los campos al desmarcar el checkbox
+                pisoInput.value = '';
+                lugarInput.value = '';
+            }
         });
+
+        // Mostrar campos si hay valores preexistentes o errores de validación
+        window.addEventListener('DOMContentLoaded', function () {
+            const pisoInput = document.querySelector('input[name="Piso"]');
+            const lugarInput = document.querySelector('input[name="Lugar"]');
+            const manualLugarCheckbox = document.querySelector('#manualLugarCheckbox');
+            const manualLugarInputs = document.querySelector('#manualLugarInputs');
+
+            // Si hay errores de validación o valores preexistentes, muestra los campos manuales
+            if (pisoInput.value || lugarInput.value || document.querySelector('.text-danger')) {
+                manualLugarCheckbox.checked = true;
+                manualLugarInputs.style.display = 'block';
+            }
+        });
+
+        // Convertir automáticamente el texto ingresado a mayúsculas
         document.querySelectorAll('.text-uppercase').forEach(input => {
             input.addEventListener('input', function () {
                 this.value = this.value.toUpperCase();
@@ -91,3 +123,4 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+

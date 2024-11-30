@@ -164,7 +164,7 @@ namespace SistemaEstacionamiento.Controllers
         {
             var nuevoTicket = new Ticket
             {
-                CodigoTicket = await GenerarCodigoUnicoAsync<Ticket>(t => t.CodigoTicket),
+                CodigoTicket = GenerarCodigoUnico(),
                 FechaEntrada = DateOnly.FromDateTime(DateTime.Now),
                 HoraEntrada = TimeOnly.FromDateTime(DateTime.Now),
                 Matricula = model.Matricula.ToUpper(),
@@ -177,7 +177,7 @@ namespace SistemaEstacionamiento.Controllers
         {
             var nuevoRegistro = new Registro
             {
-                CodigoRegistro = await GenerarCodigoUnicoAsync<Registro>(r => r.CodigoRegistro),
+                CodigoRegistro = GenerarCodigoUnico(),
                 FechaEntrada = DateOnly.FromDateTime(DateTime.Now),
                 HoraEntrada = TimeOnly.FromDateTime(DateTime.Now),
                 Matricula = model.Matricula.ToUpper()
@@ -185,10 +185,15 @@ namespace SistemaEstacionamiento.Controllers
             _context.Registros.Add(nuevoRegistro);
         }
 
-        private async Task<decimal> GenerarCodigoUnicoAsync<T>(Func<T, decimal> selector) where T : class
+        private decimal GenerarCodigoUnico()
         {
-            var maxCodigo = await _context.Set<T>().MaxAsync(t => (decimal?)selector(t)) ?? 0;
-            return maxCodigo + 1;
+            // Obtener el timestamp actual en formato "yyyyMMddHHmmssfff" (17 dígitos)
+            var codigo = DateTime.UtcNow.ToString("yyyyMMddHHmmssfff");
+
+            // Convertir a decimal para cumplir con el tipo de datos en la base de datos
+            return decimal.Parse(codigo);
         }
+
+
     }
 }
