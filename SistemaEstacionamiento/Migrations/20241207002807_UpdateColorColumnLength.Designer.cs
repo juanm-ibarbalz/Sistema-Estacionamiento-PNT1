@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaEstacionamiento.Models;
 
@@ -11,9 +12,11 @@ using SistemaEstacionamiento.Models;
 namespace SistemaEstacionamiento.Migrations
 {
     [DbContext(typeof(DbestacionamientoContext))]
-    partial class DbestacionamientoContextModelSnapshot : ModelSnapshot
+    [Migration("20241207002807_UpdateColorColumnLength")]
+    partial class UpdateColorColumnLength
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

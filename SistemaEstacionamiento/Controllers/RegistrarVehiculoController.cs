@@ -28,6 +28,12 @@ namespace SistemaEstacionamiento.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
+            if (await VehiculoYaRegistradoAsync(model.Matricula))
+            {
+                ModelState.AddModelError(string.Empty, "El vehículo ya está registrado.");
+                return View(model);
+            }
+
             var dimensiones = await ObtenerUltimasDimensionesAsync();
             if (dimensiones == null)
             {
@@ -62,20 +68,14 @@ namespace SistemaEstacionamiento.Controllers
                 model.Lugar = lugarAsignado.Value.Lugar;
             }
 
-            if (await VehiculoYaRegistradoAsync(model.Matricula))
-            {
-                ModelState.AddModelError(string.Empty, "El vehículo ya está registrado.");
-                return View(model);
-            }
-
             if (!await ClienteExisteAsync(model.Dni))
             {
                 RegistrarNuevoCliente(model);
             }
 
             RegistrarNuevoVehiculo(model);
-            await RegistrarNuevoTicketAsync(model);
-            await RegistrarNuevoRegistroAsync(model);
+            RegistrarNuevoTicketAsync(model);
+            RegistrarNuevoRegistroAsync(model);
 
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Home");
@@ -88,42 +88,43 @@ namespace SistemaEstacionamiento.Controllers
                 .FirstOrDefaultAsync();
         }
 
-        private bool ValidarRangoLugar(byte piso, byte lugar, string tipoVehiculo, Dimension dimensiones)
+        private bool ValidarRangoLugar(int piso, int lugar, string tipoVehiculo, Dimension dimensiones)
         {
             if (piso > dimensiones.Pisos) return false;
             var maxLugares = tipoVehiculo == "Auto" ? dimensiones.EspaciosAuto : dimensiones.EspaciosMoto;
             return lugar <= maxLugares;
         }
 
-        private async Task<bool> VerificarDisponibilidadLugarAsync(byte piso, byte lugar)
+        private async Task<bool> VerificarDisponibilidadLugarAsync(int piso, int lugar)
         {
             return !await _context.Vehiculos.AnyAsync(v => v.Piso == piso && v.Lugar == lugar);
         }
 
-        private async Task<(byte Piso, byte Lugar)?> ObtenerProximoLugarDisponibleAsync(string tipoVehiculo, Dimension dimensiones)
+        private async Task<(int Piso, int Lugar)?> ObtenerProximoLugarDisponibleAsync(string tipoVehiculo, Dimension dimensiones)
         {
-            for (byte piso = 1; piso <= dimensiones.Pisos; piso++)
+            for (int piso = 1; piso <= dimensiones.Pisos; piso++)
             {
-                if (tipoVehiculo == "Auto")
+                var maxLugares = tipoVehiculo == "Auto" ? dimensiones.EspaciosAuto : dimensiones.EspaciosMoto;
+
+                var lugaresOcupados = await _context.Vehiculos
+                    .Where(v => v.Piso == piso && v.Tipo == tipoVehiculo)
+                    .Select(v => v.Lugar)
+                    .ToListAsync();
+
+                for (int lugar = (tipoVehiculo == "Auto" ? 1 : dimensiones.EspaciosAuto + 1);
+                         lugar <= (tipoVehiculo == "Auto" ? dimensiones.EspaciosAuto : dimensiones.EspaciosAuto + maxLugares);
+                         lugar++)
                 {
-                    var totalAutos = await _context.Vehiculos.CountAsync(v => v.Piso == piso && v.Tipo == "Auto");
-                    if (totalAutos < dimensiones.EspaciosAuto)
+                    if (!lugaresOcupados.Contains(lugar))
                     {
-                        return (piso, (byte)(totalAutos + 1));
-                    }
-                }
-                else if (tipoVehiculo == "Moto")
-                {
-                    var totalMotos = await _context.Vehiculos.CountAsync(v => v.Piso == piso && v.Tipo == "Moto");
-                    if (totalMotos < dimensiones.EspaciosMoto)
-                    {
-                        // Las motos comienzan después de los espacios para autos
-                        return (piso, (byte)(dimensiones.EspaciosAuto + totalMotos + 1));
+                        return (piso, lugar);
                     }
                 }
             }
+
             return null;
         }
+
 
 
         private async Task<bool> VehiculoYaRegistradoAsync(string matricula)
@@ -152,7 +153,7 @@ namespace SistemaEstacionamiento.Controllers
             var nuevoVehiculo = new Vehiculo
             {
                 Matricula = model.Matricula.ToUpper(),
-                Tipo = model.Tipo,
+                Tipo = model.Tipo.ToUpper(),
                 Color = model.Color?.ToUpper(),
                 Piso = model.Piso.Value,
                 Lugar = model.Lugar.Value
@@ -160,7 +161,7 @@ namespace SistemaEstacionamiento.Controllers
             _context.Vehiculos.Add(nuevoVehiculo);
         }
 
-        private async Task RegistrarNuevoTicketAsync(RegistrarVehiculoViewModel model)
+        private void RegistrarNuevoTicketAsync(RegistrarVehiculoViewModel model)
         {
             var nuevoTicket = new Ticket
             {
@@ -173,7 +174,7 @@ namespace SistemaEstacionamiento.Controllers
             _context.Tickets.Add(nuevoTicket);
         }
 
-        private async Task RegistrarNuevoRegistroAsync(RegistrarVehiculoViewModel model)
+        private void RegistrarNuevoRegistroAsync(RegistrarVehiculoViewModel model)
         {
             var nuevoRegistro = new Registro
             {
@@ -187,13 +188,8 @@ namespace SistemaEstacionamiento.Controllers
 
         private decimal GenerarCodigoUnico()
         {
-            // Obtener el timestamp actual en formato "yyyyMMddHHmmssfff" (17 dígitos)
             var codigo = DateTime.UtcNow.ToString("yyyyMMddHHmmssfff");
-
-            // Convertir a decimal para cumplir con el tipo de datos en la base de datos
             return decimal.Parse(codigo);
         }
-
-
     }
 }

@@ -33,7 +33,7 @@
         <div class="form-group">
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="manualLugarCheckbox">
-                <label class="form-check-label" for="manualEntry">Ingresar lugar manualmente</label>
+                <label class="form-check-label" for="manualLugarCheckbox">Ingresar lugar manualmente</label>
             </div>
         </div>
 
@@ -81,44 +81,45 @@
 
 @section Scripts {
     <script>
-        // Mstrar u ocultar los campos manuales de Piso y Lugar
-        document.querySelector('#manualLugarCheckbox').addEventListener('change', function () {
-            const manualLugarInputs = document.querySelector('#manualLugarInputs');
+        document.addEventListener('DOMContentLoaded', function () {
+            const manualCheckbox = document.querySelector('#manualLugarCheckbox');
+            const manualInputs = document.querySelector('#manualLugarInputs');
             const pisoInput = document.querySelector('input[name="Piso"]');
             const lugarInput = document.querySelector('input[name="Lugar"]');
 
-            if (this.checked) {
-                manualLugarInputs.style.display = 'block';
-            } else {
-                manualLugarInputs.style.display = 'none';
+            // Función para actualizar la visibilidad de los campos manuales
+            const updateManualInputsVisibility = () => {
+                if (manualCheckbox.checked) {
+                    manualInputs.style.display = 'block';
+                } else {
+                    manualInputs.style.display = 'none';
+                    pisoInput.value = '';
+                    lugarInput.value = '';
+                }
+            };
 
-                // Vaciar los campos al desmarcar el checkbox
-                pisoInput.value = '';
-                lugarInput.value = '';
+            // Mostrar campos si hay valores preexistentes o errores de validación
+            const hasValidationErrors = () => !!document.querySelector('.text-danger:not(:empty)');
+
+            if (pisoInput.value || lugarInput.value || hasValidationErrors()) {
+                manualCheckbox.checked = true;
             }
-        });
 
-        // Mostrar campos si hay valores preexistentes o errores de validación
-        window.addEventListener('DOMContentLoaded', function () {
-            const pisoInput = document.querySelector('input[name="Piso"]');
-            const lugarInput = document.querySelector('input[name="Lugar"]');
-            const manualLugarCheckbox = document.querySelector('#manualLugarCheckbox');
-            const manualLugarInputs = document.querySelector('#manualLugarInputs');
+            // Inicializar visibilidad de los campos
+            updateManualInputsVisibility();
 
-            // Si hay errores de validación o valores preexistentes, muestra los campos manuales
-            if (pisoInput.value || lugarInput.value || document.querySelector('.text-danger')) {
-                manualLugarCheckbox.checked = true;
-                manualLugarInputs.style.display = 'block';
-            }
-        });
+            // Agregar el listener al checkbox
+            manualCheckbox.addEventListener('change', updateManualInputsVisibility);
 
-        // Convertir automáticamente el texto ingresado a mayúsculas
-        document.querySelectorAll('.text-uppercase').forEach(input => {
-            input.addEventListener('input', function () {
-                this.value = this.value.toUpperCase();
+            // Convertir automáticamente el texto ingresado a mayúsculas
+            document.querySelectorAll('.text-uppercase').forEach(input => {
+                input.addEventListener('input', function () {
+                    this.value = this.value.toUpperCase();
+                });
             });
         });
     </script>
+
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }

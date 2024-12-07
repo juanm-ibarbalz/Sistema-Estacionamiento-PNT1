@@ -7,10 +7,11 @@
 <h2>Ganancias Estimadas</h2>
 
 <div>
-    <p>Ganancias Registradas por Vehículos Facturados: @Model.GananciasRegistradas.ToString("C")</p>
-    <p>Ganancias Estimadas por Vehículos Actuales: @Model.GananciasEstimadas.ToString("C")</p>
+    <p>Ganancias Estimadas para el mes de: @Model.Mes/@Model.Anio</p>
+    <p>Registradas por Vehículos Facturados: @Model.GananciasRegistradas.ToString("C")</p>
+    <p>Estimadas por Vehículos Actuales: @Model.GananciasEstimadas.ToString("C")</p>
     <p>Sueldos Totales de Empleados: @Model.SueldosTotales.ToString("C")</p>
-    <h3>Ganancias Totales Estimadas: @Model.GananciasTotales.ToString("C")</h3>
+    <h3>Ganancias Totales: @Model.GananciasTotales.ToString("C")</h3>
     <br />
     <div style="text-align: center;">
         <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Regresar</a>

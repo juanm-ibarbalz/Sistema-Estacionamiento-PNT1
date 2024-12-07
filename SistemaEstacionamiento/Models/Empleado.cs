@@ -7,6 +7,7 @@ namespace SistemaEstacionamiento.Models
         [Key]
         [Required(ErrorMessage = "El CUIL es obligatorio.")]
         [Range(0, 99999999999, ErrorMessage = "El cuil puede contener hasta 11 caracteres")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "El CUIL solo puede contener números.")]
         public decimal Cuil { get; set; }
 
         [Required(ErrorMessage = "El nombre es obligatorio.")]

@@ -15,11 +15,12 @@ namespace SistemaEstacionamiento.Controllers
 
         public IActionResult GananciasEstimadas()
         {
-            #pragma warning disable CS8629 // Nullable value type may be null.
+            var mesActual = DateTime.Now.Month;
+            var anioActual = DateTime.Now.Year;
+
             var gananciasRegistradas = _context.Registros
-                .Where(r => r.Importe.HasValue)
+                .Where(r => r.FechaEntrada.Month == mesActual && r.FechaEntrada.Year == anioActual && r.Importe.HasValue)
                 .Sum(r => r.Importe.Value);
-            #pragma warning restore CS8629 // Nullable value type may be null.
 
             var estimacionGanancias = CalcularGananciasEstimadas();
             var sueldosTotales = _context.Empleados.Sum(e => e.Sueldo);
@@ -30,20 +31,33 @@ namespace SistemaEstacionamiento.Controllers
                 GananciasRegistradas = gananciasRegistradas,
                 GananciasEstimadas = estimacionGanancias,
                 SueldosTotales = sueldosTotales,
-                GananciasTotales = gananciasTotales
+                GananciasTotales = gananciasTotales,
+                Mes = mesActual,
+                Anio = anioActual
             };
 
             return View(viewModel);
         }
 
+
         private decimal CalcularGananciasEstimadas()
         {
-            var tarifa = _context.Tarifas.FirstOrDefault()?.Hora ?? 0;
-            if (tarifa == 0)
-                return 0;
+            var tarifa = _context.Tarifas
+                .OrderByDescending(t => t.FechaActualizacion)
+                .FirstOrDefault()?.Hora ?? 0;
+            if (tarifa == 0) return 0;
 
-            var vehiculosEstacionados = _context.Vehiculos.Count();
-            return vehiculosEstacionados * tarifa;
+            var gananciasEstimadas = _context.Registros
+                .Where(r => r.FechaSalida == null) 
+                .AsEnumerable()
+                .Sum(r =>
+                {
+                    var fechaEntrada = r.FechaEntrada.ToDateTime(r.HoraEntrada);
+                    var horasEstacionadas = Math.Ceiling((DateTime.Now - fechaEntrada).TotalHours);
+                    return (decimal)horasEstacionadas * tarifa;
+                });
+
+            return gananciasEstimadas;
         }
     }
 }

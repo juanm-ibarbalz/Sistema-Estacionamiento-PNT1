@@ -17,9 +17,11 @@ namespace SistemaEstacionamiento.Models
         [RegularExpression("^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$", ErrorMessage = "El color solo puede contener letras.")]
         public string? Color { get; set; }
 
-        public byte? Piso { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "El piso debe ser un valor positivo.")]
+        public int? Piso { get; set; }
 
-        public byte? Lugar { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "El lugar debe ser un valor positivo.")]
+        public int? Lugar { get; set; }
 
         [Required(ErrorMessage = "El DNI es obligatorio.")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "El DNI solo puede contener números.")]

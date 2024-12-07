@@ -26,55 +26,54 @@ namespace SistemaEstacionamiento.Controllers
         [HttpPost]
         public async Task<IActionResult> RetirarVehiculo(RetirarVehiculoViewModel model)
         {
-            if (!ModelState.IsValid)
-                return View(model);
+            if (!ModelState.IsValid) return View(model);
 
+            // Include = JOIN
             var ticket = await _context.Tickets
-                .Where(t => t.CodigoTicket == model.CodigoTicket)
-                .Select(t => new
-                {
-                    Ticket = t,
-                    Vehiculo = _context.Vehiculos.FirstOrDefault(v => v.Matricula == t.Matricula),
-                    Registro = _context.Registros.FirstOrDefault(r => r.Matricula == t.Matricula && r.FechaSalida == null)
-                })
-                .FirstOrDefaultAsync();
+                .Include(t => t.DniNavigation) // Cliente relacionado
+                .Include(t => t.MatriculaNavigation) // Vehículo relacionado
+                .FirstOrDefaultAsync(t => t.CodigoTicket == model.CodigoTicket);
 
-            if (ticket == null || ticket.Vehiculo == null)
+            if (ticket == null)
             {
-                ModelState.AddModelError("", "El ticket o el vehículo asociado no existen.");
+                ModelState.AddModelError("", "El ticket no existe.");
                 return View(model);
             }
 
-            if (model.Dni != ticket.Ticket.Dni)
+            if (model.Dni != ticket.Dni)
             {
                 ModelState.AddModelError("", "El DNI ingresado no coincide con el registrado en el ticket.");
                 return View(model);
             }
 
-            var fechaHoraSalida = DateTime.Now;
-            var fechaHoraEntrada = ticket.Ticket.FechaEntrada.ToDateTime(ticket.Ticket.HoraEntrada);
-            var horasEstacionado = Math.Ceiling((fechaHoraSalida - fechaHoraEntrada).TotalHours);
-            var precioPorHora = await ObtenerPrecioPorHoraDesdeBaseDeDatosAsync();
-            var importe = Math.Ceiling((decimal)horasEstacionado) * precioPorHora;
+            var registro = await _context.Registros
+                .FirstOrDefaultAsync(r => r.Matricula == ticket.Matricula && r.FechaSalida == null);
 
-            if (ticket.Registro == null)
+            if (registro == null)
             {
-                ModelState.AddModelError("", "No se ha encontrado un registro de los datos ingresados.");
+                ModelState.AddModelError("", "No se encontró un registro activo para este vehículo.");
                 return View(model);
             }
 
-            ticket.Registro.FechaSalida = DateOnly.FromDateTime(fechaHoraSalida);
-            ticket.Registro.HoraSalida = TimeOnly.FromDateTime(fechaHoraSalida);
-            ticket.Registro.Importe = importe;
+            var fechaHoraSalida = DateTime.Now;
+            var fechaHoraEntrada = ticket.FechaEntrada.ToDateTime(ticket.HoraEntrada);
 
-            _context.Tickets.Remove(ticket.Ticket);
-            _context.Vehiculos.Remove(ticket.Vehiculo);
+            registro.FechaSalida = DateOnly.FromDateTime(fechaHoraSalida);
+            registro.HoraSalida = TimeOnly.FromDateTime(fechaHoraSalida);
+
+            var horasEstacionado = (decimal)Math.Ceiling((fechaHoraSalida - fechaHoraEntrada).TotalHours);
+            var importe = horasEstacionado * await ObtenerPrecioPorHora();
+            
+            registro.Importe = importe;
+
+            _context.Tickets.Remove(ticket);
+            _context.Vehiculos.Remove(ticket.MatriculaNavigation);
 
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Home");
         }
 
-        private async Task<decimal> ObtenerPrecioPorHoraDesdeBaseDeDatosAsync()
+        private async Task<decimal> ObtenerPrecioPorHora()
         {
             var ultimaTarifa = await _context.Tarifas
                 .OrderByDescending(t => t.FechaActualizacion)

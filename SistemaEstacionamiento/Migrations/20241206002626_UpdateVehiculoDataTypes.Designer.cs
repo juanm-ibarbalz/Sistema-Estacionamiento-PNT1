@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaEstacionamiento.Models;
 
@@ -11,9 +12,11 @@ using SistemaEstacionamiento.Models;
 namespace SistemaEstacionamiento.Migrations
 {
     [DbContext(typeof(DbestacionamientoContext))]
-    partial class DbestacionamientoContextModelSnapshot : ModelSnapshot
+    [Migration("20241206002626_UpdateVehiculoDataTypes")]
+    partial class UpdateVehiculoDataTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -178,8 +181,8 @@ namespace SistemaEstacionamiento.Migrations
                         .IsFixedLength();
 
                     b.Property<string>("Color")
-                        .HasMaxLength(20)
-                        .HasColumnType("nchar(20)")
+                        .HasMaxLength(10)
+                        .HasColumnType("nchar(10)")
                         .IsFixedLength();
 
                     b.Property<int>("Lugar")

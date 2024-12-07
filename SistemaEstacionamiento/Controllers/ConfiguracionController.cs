@@ -85,7 +85,7 @@ public class ConfiguracionController : Controller
         return RedirectToAction(nameof(Configuracion));
     }
 
-
+    //Una lamba de como obtener el codigo
     private async Task<decimal> ObtenerSiguienteCodigoAsync<T>(Expression<Func<T, decimal>> codigo) where T : class
     {
         var ultimoCodigo = await _context.Set<T>()
@@ -95,9 +95,6 @@ public class ConfiguracionController : Controller
 
         return ultimoCodigo + 1;
     }
-
-
-
 }
 
 

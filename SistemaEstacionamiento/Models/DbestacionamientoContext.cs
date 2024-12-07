@@ -122,7 +122,7 @@ public partial class DbestacionamientoContext : DbContext
                 .HasMaxLength(7)
                 .IsFixedLength();
             entity.Property(e => e.Color)
-                .HasMaxLength(10)
+                .HasMaxLength(20)
                 .IsFixedLength();
             entity.Property(e => e.Tipo)
                 .HasMaxLength(4)

@@ -22,11 +22,11 @@ public partial class Vehiculo
 
     [Required(ErrorMessage = "El piso es obligatorio.")]
     [Range(0, int.MaxValue, ErrorMessage = "El piso debe ser un valor positivo.")]
-    public byte Piso { get; set; }
+    public int Piso { get; set; }
 
     [Required(ErrorMessage = "El lugar es obligatorio.")]
     [Range(0, int.MaxValue, ErrorMessage = "El lugar debe ser un valor positivo.")]
-    public byte Lugar { get; set; }
+    public int Lugar { get; set; }
 
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }
