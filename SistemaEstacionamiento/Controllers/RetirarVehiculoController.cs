@@ -28,7 +28,6 @@ namespace SistemaEstacionamiento.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            // Include = JOIN
             var ticket = await _context.Tickets
                 .Include(t => t.DniNavigation) // Cliente relacionado
                 .Include(t => t.MatriculaNavigation) // Vehículo relacionado
@@ -48,7 +47,6 @@ namespace SistemaEstacionamiento.Controllers
 
             var registro = await _context.Registros
                 .FirstOrDefaultAsync(r => r.Matricula == ticket.Matricula && r.FechaSalida == null);
-
             if (registro == null)
             {
                 ModelState.AddModelError("", "No se encontró un registro activo para este vehículo.");
@@ -56,11 +54,10 @@ namespace SistemaEstacionamiento.Controllers
             }
 
             var fechaHoraSalida = DateTime.Now;
-            var fechaHoraEntrada = ticket.FechaEntrada.ToDateTime(ticket.HoraEntrada);
-
             registro.FechaSalida = DateOnly.FromDateTime(fechaHoraSalida);
             registro.HoraSalida = TimeOnly.FromDateTime(fechaHoraSalida);
 
+            var fechaHoraEntrada = ticket.FechaEntrada.ToDateTime(ticket.HoraEntrada);
             var horasEstacionado = (decimal)Math.Ceiling((fechaHoraSalida - fechaHoraEntrada).TotalHours);
             var importe = horasEstacionado * await ObtenerPrecioPorHora();
             

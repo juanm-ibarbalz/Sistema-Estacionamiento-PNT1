@@ -87,7 +87,6 @@
             const pisoInput = document.querySelector('input[name="Piso"]');
             const lugarInput = document.querySelector('input[name="Lugar"]');
 
-            // Función para actualizar la visibilidad de los campos manuales
             const updateManualInputsVisibility = () => {
                 if (manualCheckbox.checked) {
                     manualInputs.style.display = 'block';
@@ -98,20 +97,16 @@
                 }
             };
 
-            // Mostrar campos si hay valores preexistentes o errores de validación
             const hasValidationErrors = () => !!document.querySelector('.text-danger:not(:empty)');
 
             if (pisoInput.value || lugarInput.value || hasValidationErrors()) {
                 manualCheckbox.checked = true;
             }
 
-            // Inicializar visibilidad de los campos
             updateManualInputsVisibility();
 
-            // Agregar el listener al checkbox
             manualCheckbox.addEventListener('change', updateManualInputsVisibility);
 
-            // Convertir automáticamente el texto ingresado a mayúsculas
             document.querySelectorAll('.text-uppercase').forEach(input => {
                 input.addEventListener('input', function () {
                     this.value = this.value.toUpperCase();
